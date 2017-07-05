@@ -1,62 +1,55 @@
-## Big Java - Chapeter 18 Generic Classes
-### Generic Classes and Type Parameters
-* Generic Programming can be archieved with inheritance or with type parameters.
-* Type parameters can be instantiated with class or interface types.
-* Cannot substitute any of the eight primitive types for a type parameter. Use wrapper classes instead.
-### Implementing Generic Types
+## Data Structures and Algorithm Analysis - Chapter 1
+### Selection Problem: determine the kth largest element
+* sort the list in decreasing order, then return the kth element
+* sort the first kth element in decreasing order, add the remaining element by comparing with the kth element, ignore it if it is smaller
+* a better way?
+### Optimization Efforts
+### Series
+* S = A^0 + A^1 + A^2 + ... + A^n + ... (0 < A < 1) <= 1 / (1 - A) [Geometric series]
+* S = 1 / (2^1) + 2 / (2^2) + ... + n / (2^n) + ... = 2
+* S = 1 + 2 + 3 + ... + n = n * (n + 1) / 2 => (n^2) / 2 [Arithmetic series]
+* S = 1^2 + 2^2 + 3^2 + ... + n^2 = n * (n + 1) * (2n + 1) / 6 => (n^3) / 3
+* S = 1^k + 2^k + 3^k + ... + n^k => (n^(k+1)) / |k + 1| (k != -1)
+* Harmonic numbers: H<sub>N</sub> = 1 / 1 + 1 / 2 + 1 / 3 + ... + 1 / N => log<sub>e</sub>N tends to γ (Euler's constant: 0.57722)
+###A is congruent to B modulo N, written A ≡ B(mod N)
+*If N is a prime number, there are three theorems:
+*ab ≡ 0 (mod N) is true if and only if a ≡ 0 (mod N) or b ≡ 0 (mod N)
+*If N is a prime number, then the equation ax ≡ 1 (mod N) has a unique solution, for all 0 < a < N. The solution 0 < x < N, is the multiplicative inverse.
+*If N is a prime number, then the equation x^2 ≡ a (mod N) has either two solutions, for all 0 < a < N, or no solutions.
+###The P Word
+*Induction, Contradiction, and Counterexample
+*Induction: base case => inductive hypothesis => first k to (k + 1)
+*Contradiction: Proof by contradiction proceeds by assuming that the theorem is false and showing that this assumption implies that some known property is false, and hence the original assumption was erroneous.
+
+###Recursion
+*Recursive: A function that is defined in terms of itself.
+*Using recursion for numerical calculations is usually a bad idea.
+*Example:
 ```
-1   public class Pair<T, S>{
-2     	private T first;
-3   	private S second;
-4   	public Pair(T firstElement, S secondElement){
-5	        first = firstElement;
-6	        second = secondElement;
-7       }
-8   	public T getFirst(){ return first; }
-9       public S getSecond(){ return second; }
-10  }
+1   public static int f(int x){
+2       if (x == 0){
+3           return 0;
+4       } else
+5           return 2 * f(x - 1) + x * x;
+6   }
 ```
-* Is is considered good form to use short uppercase names for type variables, such as those in the following table:
-|Type Variable|Meaning|
-| --- | --- |
-|E|Element type in a collection|
-|K|Key type in a map|
-|V|Value type in a map|
-|T|General type|
-|S, U|Additional general types|
-### Generic Methods
-* A generic method is a method with a type parameter. Such a method can occur in a class that in itself is not generic.
+*Recursive calls will keep on being made until a base case is reached.
+*Fundamental rules of recursion:
 ```
-1   public static <E> String toString(ArrayList<E> a){
-2   	String result = "";
-3   	for (E e : a){
-4   	    result = result + e + " ";
-5   	}
-6   	return result;
-7   }
+1. Base cases. You must always have some bvase cases, which can be solved without recursion.
+2. Making progress. For the cases that are to be solved recursively, the recursive call must always be to a case that makes progress toward a base case.
+3. Design rule. Assume that all the recursive calls work.
+4. Compound interest rule. Never duplicate work by solving the same instance of a problem in separate recursive rules.
 ```
-* When calling a generic method, you need not instantiate the type parameters.
+###Printing numbers:
 ```
-1   Rectangle[] rectangles = ...;
-2   ArrayUtil.print(rectangles);
+1   public static void printOut(int n){       // print nonnegative n
+2       if (n >= 10)
+3           printOut(n / 10);
+4       printDigit(n % 10);
+5   }
 ```
-* Cannot replace type parameters with primitive types.
-### Constructing Type Parameters
-* Type parameters can be constrained with bounds.
-```
-1   public interface Measurable{
-2   	double getMeasure();
-3   }
-4
-5   public static <E extends Measureble> double average(ArrayList<E> objects){
-6   	if (object.size() == 0){ return 0; }
-7       double sum = 0;
-8       for (E obj : objects){
-9           sum = sum + obj.getMeasure();
-10      }
-11      return sum / object.size();
-12  }
-```
-* This means "E or one of its superclasses extends or implements Measurable". In this situation, we say that E is a subtype of the Measurable type.
-* If two or more bounds supplied, use '&': <E extends Comparable<E> & Measurable>
-### Type Erasure
+###Recursion and Induction
+###Implementing Generic Components Pre-Java 5
+###Implementing Generic Components Using Java 5 Generics
+###Function Objects
