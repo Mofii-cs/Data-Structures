@@ -39,7 +39,7 @@ n*(n+1)/2 = O(n<sup>2</sup>)
 if (condition){
 	alg 1;
 } else {
-	alg 2 ;
+	alg 2;
 }
 ```
 ### Abstract Data Type(ADT)
