@@ -72,7 +72,7 @@ public interface List<AnyType> extends Collection<AnyType>{
 ### ArrayList
 * to wrap an array
 ### Linked List
-* the concept, not in Java
+* the concept, not only in Java
 * singly-linked lists and doubly-linked lists
 * Nodes have 2 instance variables: data and 'next'(points to next node)
 ```
