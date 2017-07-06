@@ -34,3 +34,70 @@ n<sup>2</sup> + n
 4		}
 5	}
 ```
+n*(n+1)/2 = O(n<sup>2</sup>)
+```
+if (condition){
+	alg 1;
+} else {
+	alg 2;
+}
+```
+### Abstract Data Type(ADT)
+list -> get(i), set(i), add(), remove()
+```
+public interface Collection<AnyType> extends Iterable<AnyType>{
+	int size();
+	...
+	java.util.Iterator<AnyType> iterator(); // return some class that implements iterator, show existence
+}
+```
+Iterator in Java: hasNext(), next(), remove()
+```
+public interfact Iterator<AnyType>{
+	boolean hasNext();
+	AnyType next();
+	void remove();
+}
+```
+```
+public interface List<AnyType> extends Collection<AnyType>{
+	AnyType get(int idx);
+	AnyType set(int idx, AnyType newVal);
+	void add(int idx, AnyType x);
+	void remove(int idx);
+
+	ListIterator<AnyType> listIterator(int pos);
+}
+```
+### ArrayList
+* to wrap an array
+### Linked List
+* the concept, not in Java
+* singly-linked lists and doubly-linked lists
+* Nodes have 2 instance variables: data and 'next'(points to next node)
+```
+Node<AnyType>{
+	AnyType data;
+	Node<AnyType> next;
+}
+```
+* don't need to store nodes in continuous memory
+* to add a node to the end of the linked list: O(n), iterate thru each node to the end of the list
+* to add a node to the beginning of the linked list: O(1)
+```
+t = new LLNode();
+t.next = k.next;
+k.next = t;
+```
+* doubly linked list
+* sentinal nodes: the first and last of doubly linked lists don't store data
+* (null) <- [head] <->[7] <-> [5] <-> [tail] -> (null)
+```
+addAfter(Node k){
+	t = new Node(30);
+	t.prev = k;
+	t.next = k.next;
+	k.next = t;
+	t.next.prev = t;
+}
+```
