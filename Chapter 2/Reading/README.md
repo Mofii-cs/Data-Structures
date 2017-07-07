@@ -133,60 +133,60 @@ The running time of an if/else statement is never more than the running time of 
 	==> O(N<sup>2</sup>)
 * Algorithm 3
 ```
-private static in maxSumRec(int[] a, int left, int right){
-	if (left == right){
-		if(a[left] > 0){
-			return a[left];
-		} else {
-			return 0;
-		}
-	}
-
-	int center = (left + right) / 2;
-	int maxLeftSum = maxSumRec(a, left, center);
-	int maxRightSum = maxSumRec(1, center + 1, right);
-
-	int maxLeftBorder = 0, leftBorderSum = 0;
-	for (int i = center; i >= left; i --){
-		leftBorderSum += a[i];
-		if (leftBorderSum > maxLeftBorderSum)
-			maxLeftBorderSum = leftBorderSum;
-	}
-
-	int maxRightBorderSum = 0, rightBorderSum = 0;
-	for (int i = center; i <= right; i++){
-		rightBorderSum += a[i];
-		if (rightBorderSum > maxRightBorderSum)
-			maxRightBorderSum = rightBorderSum;
-	}
-
-	return max3(maxLeftSum, maxRightSum, maxLeftBorderSum + maxRightBorderSum);
-
-	public static in maxSubSum3(int[] a){
-		return maxSumRec(a, 0, a.length-1);
-	}
-}
+1	private static in maxSumRec(int[] a, int left, int right){
+2		if (left == right){
+3			if(a[left] > 0){
+4				return a[left];
+5			} else {
+6				return 0;
+7			}
+8		}
+9	
+10		int center = (left + right) / 2;
+11		int maxLeftSum = maxSumRec(a, left, center);
+12		int maxRightSum = maxSumRec(1, center + 1, right);
+13	
+14		int maxLeftBorder = 0, leftBorderSum = 0;
+15		for (int i = center; i >= left; i --){
+16			leftBorderSum += a[i];
+17			if (leftBorderSum > maxLeftBorderSum)
+18				maxLeftBorderSum = leftBorderSum;
+19		}
+20	
+21		int maxRightBorderSum = 0, rightBorderSum = 0;
+22		for (int i = center; i <= right; i++){
+23			rightBorderSum += a[i];
+24			if (rightBorderSum > maxRightBorderSum)
+25				maxRightBorderSum = rightBorderSum;
+26		}
+27	
+28		return max3(maxLeftSum, maxRightSum, maxLeftBorderSum + maxRightBorderSum);
+29	
+30		public static in maxSubSum3(int[] a){
+31			return maxSumRec(a, 0, a.length-1);
+32		}
+33	}
 ```
 	==> T(1) = 1; T(N) = 2T(N/2) + O(N)
 	==> T(N) = O(NlogN)
 * Algorithm 4
 ```
-public static int maxSubSum4(int[] a){
-	int maxSum = 0, thisSum = 0;
-	for (int j = 0; j < a.length; j++){
-		thisSum += a[j];
-		if (thisSum > maxSum){
-			maxSum = thisSum;
-		}
-		else if (thisSum < 0){
-			thisSum = 0;
-		}
-	}
-	return maxSum;
-}
+1	public static int maxSubSum4(int[] a){
+2		int maxSum = 0, thisSum = 0;
+3		for (int j = 0; j < a.length; j++){
+4			thisSum += a[j];
+5			if (thisSum > maxSum){
+6				maxSum = thisSum;
+7			}
+8			else if (thisSum < 0){
+9				thisSum = 0;
+10			}
+11		}
+12		return maxSum;
+13	}
 ```
-	==> This algorithm is actually much faster.
-	==> And it makes only one pass thru the data, called online algorithm.
+==> This algorithm is actually much faster.
+==> And it makes only one pass thru the data, called online algorithm.
 * Online Algorithm: An algorithm that makes only one pass thru the data, and at any point in time, can correctly give an answer to the subsequence problem for the data it has already read. An online algorithm that requires only constant space and runs in linear time is just about as good as possible.
 ### Logarithms in the Running Time
 * Binary Search
