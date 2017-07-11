@@ -16,7 +16,7 @@
 ### Iterator s
 * Collections that implement the Iterable interface must provide a method named iterator that returns an object of type iterator. The iterator is an interface defined in package java.util.
 ```
-Iterator
+Iterator interface
 1	package java.util;
 2	public interface Iterator<E>{
 3		boolean hasNext();
@@ -25,7 +25,7 @@ Iterator
 6	}
 ```
 ```
-Collection
+Collection interface
 	public interface Collection<AnyType> extends Iterable<AnyType>{
 		int size();
 		boolean isEmpty();
@@ -35,4 +35,28 @@ Collection
 		boolean remove(AnyType x);
 		java.util.Iterator<AnyType> iterator();
 	}
+```
+* When the compiler sees an enhanced for loop being used on an object that is Iterable, it mechanically replaces the enhanced for loop with calls to the iterator method to obtain an Iterator and then calls to next and hasNext. Thus the print routine is rewritten by the compiler.
+```
+print_1
+1	public static <AnyType> void print(Collection<AnyType> coll){
+2		for (AnyType item : coll){
+3			System.out.println(item);
+4		}
+5	}
+```
+```
+print_2
+1	public static <AnyType> void print(Collection<AnyType> coll){
+2		Iterator<AnyType> itr = coll.iterator();
+3		while(itr.haxNext()){
+4			AnyType item = itr.next();
+5			System.out.println(item);
+6		}
+7	}
+```
+* If you make a stuctural change to the collection being iterated, then the iterator is no longer valid, and a ConcurrentModificationException is thrown. This is necessary to avoid ugly situations in which the iterator is prepared to give a certain item as the next item, and then that item is either removed, or perhaps a new item is inserted just prior to the need to use it. However, if the iterator invokes its remove method, then the iterator is still valid.
+### Implementation of ArrayList
+```
+[MyArrayList.java](MyArrayList.java)
 ```
