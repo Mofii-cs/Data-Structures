@@ -58,4 +58,4 @@ print_2
 * If you make a stuctural change to the collection being iterated, then the iterator is no longer valid, and a ConcurrentModificationException is thrown. This is necessary to avoid ugly situations in which the iterator is prepared to give a certain item as the next item, and then that item is either removed, or perhaps a new item is inserted just prior to the need to use it. However, if the iterator invokes its remove method, then the iterator is still valid.
 ### Implementation of ArrayList
 
-[MyArrayList.java](../Chapter 3/MyArrayList.java)
+[MyArrayList.java](../Chapter\ 3/MyArrayList.java)
