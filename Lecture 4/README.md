@@ -60,7 +60,7 @@ public class Josephus{
 }
 ```
 
-###
+### Tree
 * Linked list is a tree, just a special case.
 * There are no cycles within a tree.
 * **Root**: top-level node
@@ -81,3 +81,5 @@ class TreeNode<E>{
 	TreeNode<E> firstChild;
 
 }
+```
+* Application of Tree: File system
