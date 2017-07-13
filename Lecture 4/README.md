@@ -153,3 +153,16 @@ int eval(ETNode t){
 	}
 }
 ```
+* post-order / pre-order
+* recurse left - print - recurse right - recurse left - ...
+
+### Build an Expression Tree (Constructor)
+```
+4 3 2 + *
+```
+* To build an Expression Tree:
+	1. build a stack of Expression Nodes
+	2. Add operands in
+	3. When it comes an operator, pop the first node as its right node and second one as its left node
+	4. Recursively
+	5. The last node left in the stack is the root node
