@@ -83,3 +83,72 @@ class TreeNode<E>{
 }
 ```
 * Application of Tree: File system
+* Pseudocode to list a directory in a hierarchincal file system
+```
+private void listAll(int depth){
+	printName(depth); // print the name of the object
+	if(isDirectory()){
+		for each file c in this directory
+			c.listAll(depth + 1);
+	}
+}
+public void listAll(){
+	listAll(0);
+}
+```
+```
+Print out:
+/usr
+	mark
+		book
+			ch1.r
+			ch2.r
+			ch3.r
+		course
+			cop3530
+				fall
+					sy1.r
+				spr
+					sy2.r
+	tom
+		...
+```
+### Binary Tree
+* In which, each node only have 0, 1, or 2 children.
+* **Left-child** and **Right-child**
+```
+class BTNode<E>{
+	E data;
+	BTNode<E> left;
+	BTNode<E> right;
+}
+```
+* Full: Every node has either 2 children or is a leaf
+* Complete: Every level is filled from left to right
+* Perfect: Every level is 'full'
+### Expression Tree
+* Assuming all the operators are binary
+* **operator nodes**: 2 children or no children
+* **operand nodes**
+```
++-
+	-4
+	-3
+```
+```
++-
+	-4
+	-*-
+		-2
+		-5
+```
+```
+int eval(ETNode t){
+	if (t.isOperand()){
+		return t.value;
+	} else {
+		int lval = eval(t.left);
+		int rval = eval(t.right);
+		return apply(t.operator, lval, rval);
+	}
+}
